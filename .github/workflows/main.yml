@@ -21,8 +21,8 @@ jobs:
     - name: Build and push Docker image to Azure Container Registry
       run: |
         docker build -t my-dotnet-app2 .
-        docker tag my-dotnet-app2 <acr-name>.azurecr.io/my-dotnet-app2:latest
-        docker push <acr-name>.azurecr.io/my-dotnet-app2:latest
+        docker tag my-dotnet-app2 luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
+        docker push luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
 
     - name: Deploy to Azure Container Instances
       uses: azure/aci-deploy@v1
