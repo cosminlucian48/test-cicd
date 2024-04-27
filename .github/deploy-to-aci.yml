@@ -1,0 +1,37 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure Container Registry
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build and push Docker image to Azure Container Registry
+      run: |
+        docker build -t my-dotnet-app .
+        docker tag my-dotnet-app <acr-name>.azurecr.io/my-dotnet-app:latest
+        docker push <acr-name>.azurecr.io/my-dotnet-app:latest
+
+    - name: Deploy to Azure Container Instances
+      uses: azure/aci-deploy@v1
+      with:
+        resource-group: luciantestregistry
+        dns-name-label: my-dotnet-app2
+        image-name: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
+        container-name: my-dotnet-app2
+        os-type: Windows
+        ports: 80
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}

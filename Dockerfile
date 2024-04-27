@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
 WORKDIR /app
 
 # Copy the .NET 4.8 console application executable
-COPY bin/Debug .
+COPY dissertation_prosumer/bin/Debug .
 
 # Set entrypoint to run the executable
 CMD ["dissertation_prosumer.exe"]
