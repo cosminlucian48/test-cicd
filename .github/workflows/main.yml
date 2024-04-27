@@ -33,7 +33,7 @@ jobs:
         resource-group: Lucian-test1
         dns-name-label: my-dotnet-app2
         image: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
-        container-name: my-dotnet-app2
+        name: my-dotnet-app2
         os-type: Windows
         ports: 80
         location: westeurope
