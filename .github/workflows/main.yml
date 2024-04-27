@@ -32,7 +32,7 @@ jobs:
       with:
         resource-group: Lucian-test1
         dns-name-label: my-dotnet-app2
-        image-name: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
+        image: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
         container-name: my-dotnet-app2
         os-type: Windows
         ports: 80
