@@ -30,7 +30,7 @@ jobs:
     - name: Deploy to Azure Container Instances
       uses: azure/aci-deploy@v1
       with:
-        resource-group: luciantestregistry
+        resource-group: Lucian-test1
         dns-name-label: my-dotnet-app2
         image-name: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
         container-name: my-dotnet-app2
