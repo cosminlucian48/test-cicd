@@ -17,6 +17,9 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Login to ACR
+      run: |
+       az acr login --name luciantestregistry
 
     - name: Build and push Docker image to Azure Container Registry
       run: |
@@ -27,11 +30,13 @@ jobs:
     - name: Deploy to Azure Container Instances
       uses: azure/aci-deploy@v1
       with:
-        resource-group: luciantestregistry
+        resource-group: Lucian-test1
         dns-name-label: my-dotnet-app2
-        image-name: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
-        container-name: my-dotnet-app2
+        image: luciantestregistry.azurecr.io/samples/my-dotnet-app2:latest
+        name: my-dotnet-app2
         os-type: Windows
         ports: 80
-      env:
-        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        location: westeurope
+        registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+
