@@ -10,14 +10,15 @@ namespace dissertation_prosumer
     {
         private static void Main(string[] args)
         {
-            var world = new World(0, 1500);
+            //DataAccess.InitializeDatabase();
+            var world = new World(0, Utils.Delay);
 
             var prosumerAgent1 = new ProsumerAgent();
             var prosumerAgent2 = new ProsumerAgent();
             var prosumerAgent3 = new ProsumerAgent();
             world.AddProsumer(prosumerAgent1, "prosumer1");
-            world.AddProsumer(prosumerAgent2, "prosumer2");
-            world.AddProsumer(prosumerAgent3, "prosumer3");
+            /*world.AddProsumer(prosumerAgent2, "prosumer2");
+            world.AddProsumer(prosumerAgent3, "prosumer3");*/
 
             world.Start();
         }
